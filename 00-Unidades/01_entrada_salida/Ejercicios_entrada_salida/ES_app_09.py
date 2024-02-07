@@ -33,8 +33,8 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        sueldo = int(self.txt_sueldo.get())
-        porcentaje = (sueldo * 15)//100
+        sueldo = float(self.txt_sueldo.get())
+        porcentaje = (sueldo * 15)/100
         porcentaje_sumado = sueldo + porcentaje
         alert("Resultado", porcentaje_sumado)
         
