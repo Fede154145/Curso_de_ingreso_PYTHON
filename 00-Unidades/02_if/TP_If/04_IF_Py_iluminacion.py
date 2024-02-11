@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Federico
+apellido: Guesdon
 ---
 TP: IF_Iluminacion
 ---
@@ -43,7 +43,42 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        precio_lampara_unidad = 800
+        cantidad_lampara = int(self.combobox_cantidad.get())
+        marca_lampara = self.combobox_marca.get()
+        total = precio_lampara_unidad * cantidad_lampara       
+        total_descuento = 0
+        if cantidad_lampara >= 6:
+            total_descuento = total - (total * 0.50)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 5 and marca_lampara == "ArgentinaLuz":
+            total_descuento = total - (total * 0.40)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 5 and not marca_lampara == "ArgentinaLuz":
+            total_descuento = total - (total * 0.30)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 4 and marca_lampara == "ArgentinaLuz" or cantidad_lampara == 4 and marca_lampara == "FelipeLamparas":
+            total_descuento = total - (total * 0.25)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 4 and not (marca_lampara == "ArgentinaLuz" or cantidad_lampara == 4 and marca_lampara == "FelipeLamparas"):
+            total_descuento = total - (total * 0.20)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 3 and marca_lampara == "ArgentinaLuz":
+            total_descuento = total - (total * 0.15)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 3 and marca_lampara == "FelipeLamparas":
+            total_descuento = total - (total * 0.10)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        elif cantidad_lampara == 3 and not (marca_lampara == "ArgentinaLuz" or cantidad_lampara == 4 and marca_lampara == "FelipeLamparas"):
+            total_descuento = total - (total * 0.05)
+            mensaje = f"El precio final de su compra es {total_descuento}"
+        else:
+            mensaje = f"El precio final de su compra es {total}"
+        if total_descuento >= 4000:
+            mensaje = f"El precio final de su compra es {total_descuento - (total_descuento * 0.05)}"
+        
+        
+        alert("Mensaje", mensaje)
         
     
 if __name__ == "__main__":

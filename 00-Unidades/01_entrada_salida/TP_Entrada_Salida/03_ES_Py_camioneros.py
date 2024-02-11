@@ -20,7 +20,9 @@ Enunciado:
     El programa deberá informar la cantidad de camiones, 
     sabiendo que cada uno de ellos puede transportar por viaje 3500kg
 
-    B.	A partir del ingreso de la cantidad de kilómetros que tiene que recorrer estos camiones para llegar al destino de la obra, necesitamos que el programa informe cual es el tiempo (en horas) que tardará cada uno de los camiones, si sabemos que cada camión puede ir a una velocidad máxima y constante de 90 km/h  
+    B.	A partir del ingreso de la cantidad de kilómetros que tiene que recorrer estos camiones para llegar al destino
+    de la obra, necesitamos que el programa informe cual es el tiempo (en horas) que tardará cada uno de los camiones, 
+    si sabemos que cada camión puede ir a una velocidad máxima y constante de 90 km/h  
 
 '''
 
@@ -58,7 +60,10 @@ class App(customtkinter.CTk):
         alert("Resultado", f"La cantidad de camiones que se necesitan son: {camiones_redondeado}")
 
     def btn_tiempo_llegada_on_click(self):
-        pass
+        kilometros = self.txt_kilometros.get()
+        cantidad_kilometros = float(kilometros)
+        tiempo_llegada = cantidad_kilometros / 90
+        alert("Resultado", f"El tiempo que tarda el camion es de {tiempo_llegada} horas")
     
     
 if __name__ == "__main__":
