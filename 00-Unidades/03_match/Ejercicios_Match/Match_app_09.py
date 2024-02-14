@@ -6,8 +6,8 @@ import customtkinter
 
 
 '''
-nombre:
-apellido:
+nombre: Federico
+apellido: Guesdon
 ---
 Ejercicio: Match_09
 ---
@@ -57,9 +57,54 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
-            
-    
+        destino = self.combobox_destino.get()
+        estacion = self.combobox_estaciones.get()
+        total = 15000
+        aumento = 0
+        descuento = 0
+
+        match estacion:
+            case "Invierno":
+                match destino:
+                    case "Bariloche":
+                        aumento = 0.20
+                        total_modificado = total + (total * aumento)
+                        mensaje = f"El total es {total_modificado}"
+                    case "Cataratas"|"Cordoba":
+                        descuento = 0.10
+                        total_modificado = total - (total * descuento)
+                        mensaje = f"El total es {total_modificado}"
+                    case _:
+                        descuento = 0.20
+                        total_modificado = total - (total * descuento)
+                        mensaje = f"El total es {total_modificado}"
+
+            case "Verano":
+                match destino:
+                    case "Bariloche":
+                        descuento = 0.20
+                        total_modificado = total - (total * descuento)
+                        mensaje = f"El total es {total_modificado}"
+                    case "Cataratas"|"Cordoba":
+                        aumento = 0.10
+                        total_modificado = total + (total * aumento)
+                        mensaje = f"El total es {total_modificado}"
+                    case _:
+                        aumento = 0.20
+                        total_modificado = total + (total * aumento)
+                        mensaje = f"El total es {total_modificado}"
+
+            case _:
+                match destino:
+                    case "Bariloche"|"Cataratas"|"Mar del plata":
+                        aumento = 0.10
+                        total_modificado = total + (total * aumento)
+                        mensaje = f"El total es {total_modificado}"
+                    case _:
+                        mensaje = f"El total es {total}"
+                
+                
+        alert("Mensaje", mensaje)
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
