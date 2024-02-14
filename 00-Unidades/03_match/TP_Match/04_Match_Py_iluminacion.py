@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Federico
+apellido: Guesdon
 ---
 TP: Iluminación
 ---
@@ -43,7 +43,47 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        cantidad_lamparas = int(self.combobox_cantidad.get())
+        marca_lamparas = self.combobox_marca.get()
+        precio_lampara = cantidad_lamparas * 800
+        descuento = 0
+
+        match cantidad_lamparas:
+            case 6|7|8|9|10|11|12:
+                descuento = 0.50
+                precio_total = precio_lampara - (precio_lampara * descuento)                                
+            case 5:
+                match marca_lamparas:
+                    case "ArgentinaLuz":
+                        descuento = 0.40
+                        precio_total = precio_lampara - (precio_lampara * descuento)
+                    case _:
+                        descuento = 0.30
+            case 4:
+                match marca_lamparas:
+                    case "ArgentinaLuz"|"FelipeLamparas":
+                        descuento = 0.25
+                        precio_total = precio_lampara - (precio_lampara * descuento)
+                    case _:
+                        descuento = 0.20
+            case 3:
+                match marca_lamparas:
+                    case "ArgentinaLuz":
+                        descuento = 0.15
+                        precio_total = precio_lampara - (precio_lampara * descuento)
+                    case "FelipeLamparas":
+                        descuento = 0.10
+                        precio_total = precio_lampara - (precio_lampara * descuento)
+                    case _:
+                        descuento = 0.5
+                        precio_total = precio_lampara - (precio_lampara * descuento)
+
+        if precio_total >=4000:
+            descuento = 0.05
+            precio_total_descuento = precio_total - (precio_total * descuento)
+            alert("Mensaje", f"El precio final es de {precio_total_descuento}")
+        else:
+            alert("Mensaje", f"El precio final es de {precio_total}")
         
     
 if __name__ == "__main__":
